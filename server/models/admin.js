@@ -4,11 +4,9 @@ const mongoose = require('mongoose');
 const moderatorSchema = new mongoose.Schema({
     userName:{
         type: String,
-        require: true
     },
     password:{
         type: String,
-        reture: true
     },
 });
 
