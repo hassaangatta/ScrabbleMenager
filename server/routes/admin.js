@@ -8,6 +8,6 @@ const {
 
 
 router.route('/')
-.get(handleLogin)
+.post(handleLogin)
 
 module.exports = router;

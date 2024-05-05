@@ -1,6 +1,7 @@
 const express = require('express');
-const {connectDB} = require('./connection')
-const adminRouter = require('./routes/admin')
+const {connectDB} = require('./connection');
+const adminRouter = require('./routes/admin');
+const playerRouter = require('./routes/player');
 
 const app = express();
 const port = 5000;
@@ -13,5 +14,7 @@ app.use(express.urlencoded({extended: false}));
 
 //Routes
 app.use("/admin",adminRouter);
+
+app.use ("/players",playerRouter);
 
 app.listen(port,() => console.log('Server Started!'));
