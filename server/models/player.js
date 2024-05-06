@@ -2,29 +2,29 @@ const mongoose = require('mongoose');
 
 //schema
 const playerSchema = new mongoose.Schema({
-    TID:{
+    TID: {
         type: mongoose.Schema.Types.ObjectId,
         require: true,
     },
-    name:{
+    name: {
         type: String,
-        require:true,
+        require: true,
     },
-    school:{
+    school: {
         type: String,
-        require:true,
+        require: true,
     },
-    category:{
+    category: {
         type: String,
-        require:true,
+        require: true,
     },
-    playerNumber:{
+    playerNumber: {
         type: Number,
-        require:true,
+        require: true,
     },
 });
 
 //Model
-const Player = mongoose.model('player',playerSchema);
+const Player = mongoose.model('player', playerSchema);
 
 module.exports = Player;
