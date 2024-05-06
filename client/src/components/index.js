@@ -1,0 +1,10 @@
+export { default as AboutUs } from './AboutUs';
+export { default as Admin } from './Admin';
+export { default as Downloads } from './Downloads';
+export { default as Homepage } from './Homepage';
+export { default as Loader } from './Loader';
+export { default as Login } from './Login';
+export { default as Navbar } from './Navbar';
+export { default as NotFoundPage } from './NotFoundPage';
+export { default as Tournaments } from './Tournaments';
+export { default as TournamentDetails } from './TournamentDetails';
