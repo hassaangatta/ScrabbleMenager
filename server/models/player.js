@@ -21,7 +21,6 @@ const playerSchema = new mongoose.Schema({
     playerNumber:{
         type: Number,
         require:true,
-        unique:true,
     },
 });
 
