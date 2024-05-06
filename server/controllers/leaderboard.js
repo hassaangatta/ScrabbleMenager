@@ -2,6 +2,21 @@ const Tournament = require('../models/tournament');
 const Player = require('../models/player');
 const Round = require('../models/round');
 
+const comp = (a,b) => {
+    if(a.score < b.score)
+        return 1;
+    else if(a.score > b.score)
+        return -1;
+    else
+    {
+        if(a.spread > b.spread)
+            return -1;
+        else if(a.spread < b.spread)
+            return 1;
+    }
+    return 0;
+};
+
 const handleGetLeaderBoard = async(req,res) => {
     const players = await Player.find({TID:req.params.id , category: req.params.category});
     const tournament = await Tournament.find({_id:req.params.id});
@@ -37,20 +52,7 @@ const handleGetLeaderBoard = async(req,res) => {
 
         result.push(player);
     }
-    result.sort(cmp(a,b){
-        if(a.score < b.score)
-            return 1;
-        else if(a.score > b.score)
-            return -1;
-        else
-        {
-            if(a.spread > b.spread)
-                return -1;
-            else if(a.spread < b.spread)
-                return 1;
-        }
-        return 0;
-    });
+    result.sort(comp(a,b));
     return res.json(result);
 };
 

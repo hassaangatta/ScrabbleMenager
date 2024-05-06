@@ -5,11 +5,6 @@ const handleGetAllTournaments = async(req,res) => {
     return res.json(result);
 };
 
-const handleGetTournamentByID = async(req,res) => {
-    const result = await Tournament.findById({req.params.id});
-    return res.json(result);
-};
-
 const handleCreateTournament = async(req,res) => {
     const body = req.body;
     if (
@@ -51,5 +46,4 @@ const handleCreateTournament = async(req,res) => {
 module.exports = {
     handleGetAllTournaments,
     handleCreateTournament,
-    handleGetTournamentByID,
 };

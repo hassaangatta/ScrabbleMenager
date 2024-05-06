@@ -18,7 +18,7 @@ const {
     handleAddPlayers,
 } = require('../controllers/player');
 
-router.route('/upload')
+router.route('/upload/:id')
 .post(upload.single('csvFile'),handleAddPlayers)
 
 module.exports = router;
