@@ -6,6 +6,7 @@ const playerRouter = require('./routes/player');
 const leaderboardRouter = require('./routes/leaderboard');
 const roundRouter = require('./routes/round');
 const tournamentRouter = require('./routes/tournament');
+const paringRouter = require('./routes/paring');
 
 const app = express();
 const port = 5000;
@@ -28,5 +29,7 @@ app.use("/leaderboard",leaderboardRouter);
 app.use("/round",roundRouter);
 
 app.use("/tournament",tournamentRouter);
+
+app.use("/tournament/paring",paringRouter);
 
 app.listen(port,() => console.log('Server Started!'));

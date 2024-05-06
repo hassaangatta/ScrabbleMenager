@@ -1,7 +1,24 @@
-import Math;
 const Tournament = require('../models/tournament');
 const Player = require('../models/player');
 const Round = require('../models/round');
+
+const cmp = (a,b) => {
+    if(a.score < b.score){
+        return 1;
+    }
+    else if(a.score > b.score){
+        return -1;
+    }
+    else{
+        if(a.spread > b.spread){
+            return -1;
+        }
+        else if(a.spread < b.spread){
+            return 1;
+        }
+    }
+    return 0;
+};
 
 const handleGetParing = async(req,res) => {
     const players = await Player.find({TID:req.params.id , category: req.params.category});
@@ -24,7 +41,8 @@ const handleGetParing = async(req,res) => {
         {
             if (rounds[i].P1ID === player.PID)
             {
-                matches[rounds[i].roundNumber - 1] = rounds[i].P2ID;
+                const player = await Player.find({_id:rounds[i].P2ID});
+                matches[rounds[i].roundNumber - 1] = `${player[0].name } - ${player[0].playerNumber}`;
             }
         }
         player.matches = matches;
@@ -84,23 +102,7 @@ const handleGenerateParing = async(req,res) => {
                 board.push(player);
             }
         }
-        board.sort(cmp(a,b){
-            if(a.score < b.score){
-                return 1;
-            }
-            else if(a.score > b.score){
-                return -1;
-            }
-            else{
-                if(a.spread > b.spread){
-                    return -1;
-                }
-                else if(a.spread < b.spread){
-                    return 1;
-                }
-            }
-            return 0;
-        });
+        board.sort(cmp(a,b));
         const tens = Math.floor((board.length)/10);
         const remaining = (board.length)%10;
         let start = 0;
